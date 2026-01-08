@@ -13,8 +13,7 @@ go_binary(
 go_library(
     name = "subject_lib",
     srcs = ["main.go"],
-    # We need to pass this in a hidden way when orchestrion is enabled
-    orchestrion_tool = "@com_github_datadog_orchestrion//:orchestrion",
+    embedsrcs = ["orchestrion.yml"],  # Orchestrion configuration included via embedsrcs
     importpath = "datadoghq.com/x/dorcas/subject",
     visibility = ["//visibility:private"],
 )
@@ -22,5 +21,7 @@ go_library(
 orch_go_binary(
     name = "subject_orch",
     actual = ":subject",
+    # orchestrion_tool attribute is kept for documentation purposes;
+    # the actual tool is configured via rules_go's orchestrion extension
     visibility = ["//visibility:public"],
 )
