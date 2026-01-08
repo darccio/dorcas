@@ -21,7 +21,5 @@ go_library(
 orch_go_binary(
     name = "subject_orch",
     actual = ":subject",
-    # orchestrion_tool attribute is kept for documentation purposes;
-    # the actual tool is configured via rules_go's orchestrion extension
     visibility = ["//visibility:public"],
 )
